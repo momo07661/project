@@ -1,12 +1,12 @@
 package com.fsse2401.project.data.product.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.*;
+import com.fsse2401.project.data.product.domainObject.response.ResponseProductData;
 
 import java.math.BigDecimal;
 
 
-public class ResponseProductDto {
+public class ResponseAllProductDto {
 
     private Integer pid;
 
@@ -17,14 +17,14 @@ public class ResponseProductDto {
     private BigDecimal price;
 
     @JsonProperty("has_stock")
-    private Boolean isStock;
+    private Boolean hasStock;
 
-    public ResponseProductDto() {
-        this.pid = pid;
-        this.name = name;
-        this.imageUrl = imageUrl;
-        this.price = price;
-        this.isStock = isStock;
+    public ResponseAllProductDto(ResponseProductData data) {
+        this.pid = data.getPid();
+        this.name = data.getName();
+        this.imageUrl = data.getImageUrl();
+        this.price = data.getPrice();
+        this.hasStock = data.getStock() > 0;
     }
 
     public Integer getPid() {
@@ -59,11 +59,11 @@ public class ResponseProductDto {
         this.price = price;
     }
 
-    public Boolean getStock() {
-        return isStock;
+    public Boolean getHasStock() {
+        return hasStock;
     }
 
-    public void setStock(Boolean stock) {
-        isStock = stock;
+    public void setHasStock(Boolean hasStock) {
+        this.hasStock = hasStock;
     }
 }

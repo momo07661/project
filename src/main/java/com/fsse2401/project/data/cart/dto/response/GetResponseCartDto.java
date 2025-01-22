@@ -1,37 +1,28 @@
-package com.fsse2401.project.entity.product;
+package com.fsse2401.project.data.cart.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.*;
+import com.fsse2401.project.data.cart.domainObject.response.ResponseCartData;
 
 import java.math.BigDecimal;
 
-@Entity
-public class ProductEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class GetResponseCartDto {
+
     private Integer pid;
-    @Column(nullable = false)
     private String name;
     @JsonProperty("image_url")
-    @Column(nullable = false)
     private String imageUrl;
-    @Column(nullable = false)
-    private String description;
-    @Column(nullable = false)
     private BigDecimal price;
-    @Column(nullable = false)
+    @JsonProperty("cart_quantity")
+    private Integer cartQuantity;
     private Integer stock;
 
-    public ProductEntity() {
-    }
-
-    public ProductEntity(Integer pid, String name, String imageUrl, String description, BigDecimal price, Integer stock) {
-        this.pid = pid;
-        this.name = name;
-        this.imageUrl = imageUrl;
-        this.description = description;
-        this.price = price;
-        this.stock = stock;
+    public GetResponseCartDto(ResponseCartData data) {
+        this.pid = data.getProduct().getPid();
+        this.name = data.getProduct().getName();
+        this.imageUrl = data.getProduct().getImageUrl();
+        this.price = data.getProduct().getPrice();
+        this.cartQuantity = data.getQuantity();
+        this.stock = data.getProduct().getStock();
     }
 
     public Integer getPid() {
@@ -58,20 +49,20 @@ public class ProductEntity {
         this.imageUrl = imageUrl;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public BigDecimal getPrice() {
         return price;
     }
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public Integer getCartQuantity() {
+        return cartQuantity;
+    }
+
+    public void setCartQuantity(Integer cartQuantity) {
+        this.cartQuantity = cartQuantity;
     }
 
     public Integer getStock() {

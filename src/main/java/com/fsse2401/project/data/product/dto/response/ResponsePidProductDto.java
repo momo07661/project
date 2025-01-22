@@ -1,34 +1,27 @@
-package com.fsse2401.project.data.product.domainObject.response;
+package com.fsse2401.project.data.product.dto.response;
 
-import com.fsse2401.project.data.product.entity.ProductEntity;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fsse2401.project.data.product.domainObject.response.ResponseProductData;
 
 import java.math.BigDecimal;
 
-public class ResponseProductData {
+public class ResponsePidProductDto {
+
     private Integer pid;
     private String name;
+    @JsonProperty("image_url")
     private String imageUrl;
     private BigDecimal price;
-    private String description;
     private Integer stock;
-    private String stripePriceId;
+    private String description;
 
-    public ResponseProductData(ProductEntity entity) {
-        this.pid = entity.getPid();
-        this.name = entity.getName();
-        this.imageUrl = entity.getImageUrl();
-        this.price = entity.getPrice();
-        this.stock = entity.getStock();
-        this.description = entity.getDescription();
-        this.stripePriceId = entity.getStripePriceId();
-    }
-
-    public String getStripePriceId() {
-        return stripePriceId;
-    }
-
-    public void setStripePriceId(String stripePriceId) {
-        this.stripePriceId = stripePriceId;
+    public ResponsePidProductDto(ResponseProductData data) {
+        this.pid = data.getPid();
+        this.name = data.getName();
+        this.imageUrl = data.getImageUrl();
+        this.price = data.getPrice();
+        this.stock = data.getStock();
+        this.description = data.getDescription();
     }
 
     public String getDescription() {
